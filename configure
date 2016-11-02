@@ -1,0 +1,20 @@
+#/bin/bash
+compile_cpp(){
+	if (g++ nimda-files/NimdaMain.cpp nimda-files/nimda_cmd.cpp); then
+		echo "KommandorMain compiled"
+		if (mv a.out nimda); then
+			echo "Renamed \"a.out\" to nimda."
+		fi
+	fi
+}
+create_sym_link(){
+	if [ -e /usr/bin/nimda ]; then
+		echo "/usr/bin/nimda already created."
+	else
+		if (ln -s /home/kylo/Documents/git-clones/nimda/nimda /usr/bin/nimda); then
+			echo "nimda symbolic link generated."
+		fi
+	fi
+}
+compile_cpp
+create_sym_link
