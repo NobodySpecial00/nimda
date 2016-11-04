@@ -21,10 +21,10 @@ runVars rv;
 // FUNCTIONS
 void help(){
 	cout << "USAGE" << endl;
-        cout << "kommandor [options] [parameters] " << endl;
-        cout << "kommandor editconf [apache/sshd/logins]" << endl;
-        cout << "kommandor removeusers/addusers [user1, user2, ...]" << endl;
-        cout << "kommandor users [search string (similar to getent)]" << endl;
+        cout << "nimda [options] [parameters] " << endl;
+        cout << "nimda editconf [apache/sshd/logins]" << endl;
+        cout << "nimda removeusers/addusers [user1, user2, ...]" << endl;
+        cout << "nimda users [search string (similar to getent)]" << endl;
 	cout << "OPTIONS" << endl;
 	cout << "Misc:" << endl;
         cout << "help        : Displays this help prompt." << endl;
@@ -38,27 +38,8 @@ void help(){
         cout << "memuse      : Show the system memory usage." << endl;
         cout << "serverstat  : Display the server utilization. \n" << endl;
 	cout << "Networking, encryption, and firewall: " << endl;
-        cout << "iptobinary  : Converts the following IP address to binary notation." << endl;
         cout << "setiptable  : Interactively generate iptables firewalls." << endl;
         cout << "encrypt     : Encrypts a file using gpg." << endl;
-}
-string toBinary(vector<int> octets){
-	string result;
-	for (unsigned j=0; j < octets.size(); j++){
-		if (j>0)
-			result += '.';
-		int mask = 256;
-		while (mask>>=1)
-			result += '0' + ((octets[j] & mask ) != 0);
-	}
-	return result;
-}
-int getOctets(string ip, vector<int> &octets){
-	stringstream ss(ip);
-	string temp;
-	while (getline(ss,temp,'.'))
-		octets.push_back(atoi(temp.c_str()));
-	return 0;
 }
 void err_call( string x ){
 	cout << red << x << normal << endl;
@@ -199,9 +180,8 @@ void editFirewall(int argc, char* argv[]){
 				chain = "OUTPUT";
 			else if ( filteropt == "3" )
 				chain = "FORWARD";
-			else{
+			else
 				err_call("Invalid parameter.");
-			}
 			cout << "Get source IP address: " << endl;
 			cout << "1.) Firewall using a single source IP." << endl;
 			cout << "2.) Firewall using a source subnet." << endl;
@@ -220,13 +200,10 @@ void editFirewall(int argc, char* argv[]){
 				cout << ">";
 				cin >> ipsource;
 			}
-			else if ( filtertype == "3" ){
+			else if ( filtertype == "3" )
 				ipsource = "0/0";
-			}
-			else{
+			else
 				err_call("Invalid parameter.");
-
-			}
 			cout << "Get destination IP address: " << endl;
 			cout << "1.) Firewall using a single destination IP." << endl;
 			cout << "2.) Firewall using a destination SUBNET." << endl;
@@ -248,9 +225,8 @@ void editFirewall(int argc, char* argv[]){
 			else if ( filterdest == "3" ){
 				ipdest = "0/0";
 			}
-			else{
+			else
 				err_call("Invalid parameter.");
-			}
 			cout << "Get protocol: " << endl;
 			cout << "1.) Block all TCP traffic." << endl;
 			cout << "2.) Block a specific TCP service." << endl;
@@ -259,9 +235,8 @@ void editFirewall(int argc, char* argv[]){
 			cout << ">";
 			cin >> filterprot;
 			string proto;
-			if ( filterprot == "1" ){
+			if ( filterprot == "1" )
 				proto = "TCP";
-			}
 			else if ( filterprot == "2" ) {
 				cout << "Enter the TCP service name: " << endl;
 				cout << ">";
@@ -272,9 +247,8 @@ void editFirewall(int argc, char* argv[]){
 				cout << ">";
 				cin >> proto;
 			}
-			else{
+			else
 				err_call("Invalid parameter.");
-			}
 			cout << "Get rule: " << endl;
 			cout << "1.) rule=\"ACCEPT\"" << endl;
         		cout << "2.) rule=\"REJECT\"" << endl;
@@ -284,21 +258,16 @@ void editFirewall(int argc, char* argv[]){
 			cout << ">";
 			cin >> filterrule;
 			string rule;
-			if ( filterrule == "1" ){
+			if ( filterrule == "1" )
 				rule = "ACCEPT";
-			}
-			else if ( filterrule == "2" ){
+			else if ( filterrule == "2" )
 				rule = "REJECT";
-			}
-			else if ( filterrule == "3" ){
+			else if ( filterrule == "3" )
 				rule = "DROP";
-			}
-			else if ( filterrule == "4" ){
+			else if ( filterrule == "4" )
 				rule = "LOG";
-			}
-			else{
+			else
 				err_call("Invalid parameter.");
-			}
 			cout << "The generated rule is: " << endl;
 			cout << red << "iptables -A " << chain << " -s " << ipsource << " -d " << ipdest << " -p " << proto << " -j " << rule << normal << endl;
 			cout << "Save the rule to IP tables (y/n)?" << endl;
@@ -314,17 +283,6 @@ void editFirewall(int argc, char* argv[]){
 				err_call("Option other than \"y\" specified.");
 			}
 		}
-	}
-}
-void ipInfoConv( int argc, char* argv[] ){
-	if ( argc < 3 ){
-		err_call("mssing parameters.");
-	}
-	else{
-		string string_ip = string( argv[2] );
-		vector<int> octetsIP;
-		getOctets(string_ip, octetsIP);
-		cout << "Binary IP: " << toBinary(octetsIP) << endl;
 	}
 }
 void showMemory(){
@@ -384,5 +342,4 @@ void editConfigFile( int argc, char* argv[] ){
 		}
 	}
 }
-
-// KILL KILL KILL
+// She loves everybody. She gets off all the time.

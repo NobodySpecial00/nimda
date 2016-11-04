@@ -40,8 +40,6 @@ int main(int argc, char* argv[]){
 			editFirewall( argc, argv );
 		else if ( argtest == "addusers"           )
 			addUsers( argc, argv );
-		else if ( argtest == "iptobinary"         )
-			ipInfoConv( argc, argv );
 		else if ( argtest == "editconf"           )
 			editConfigFile( argc, argv );
 		else
