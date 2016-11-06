@@ -1,8 +1,6 @@
 #ifndef NIMDA_CMD_H
 #define NIMDA_CMD_H
-
 using namespace std;
-
 void help();
 void pcol( string x, string y );
 void err_call( string x );
@@ -16,5 +14,4 @@ void serverUtilization( int argc, char* argv[]);
 void editFirewall(int argc, char* argv[]);
 void showMemory();
 void editConfigFile( int argc, char* argv[] );
-
 #endif

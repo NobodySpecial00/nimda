@@ -6,10 +6,7 @@
 #include <unistd.h>
 #include <vector>
 #include <sstream>
-
 using namespace std;
-
-//INITAL VARIABLES
 char red	[] = { 0x1b, '[', '0', ';', '3', '1', 'm', 0 };
 char normal	[] = { 0x1b, '[', '0', ';', '3', '3', 'm', 0 };
 class runVars{
@@ -17,29 +14,23 @@ class runVars{
 		string runVar;
 };
 runVars rv;
-
-// FUNCTIONS
 void help(){
 	cout << "USAGE" << endl;
-        cout << "nimda [options] [parameters] " << endl;
-        cout << "nimda editconf [apache/sshd/logins]" << endl;
-        cout << "nimda removeusers/addusers [user1, user2, ...]" << endl;
-        cout << "nimda users [search string (similar to getent)]" << endl;
+        cout << "\tnimda [options] [parameters] " << endl;
+        cout << "\tnimda editconf [apache/sshd/logins]" << endl;
+        cout << "\tnimda removeusers/addusers [user1, user2, ...]" << endl;
+        cout << "\tnimda users [search string (similar to getent)]" << endl;
 	cout << "OPTIONS" << endl;
-	cout << "Misc:" << endl;
-        cout << "help        : Displays this help prompt." << endl;
-        cout << "editconf    : Edits a configuration file based on flags. \n" << endl;
-	cout << "User and group management: " << endl;
-        cout << "users       : Displays the system users." << endl;
-        cout << "addusers    : Adds the listed users in an interactive prompt." << endl;
-        cout << "groups      : Displays the system groups." << endl;
-        cout << "removeusers : Completely removes a specified user. \n" << endl; 
-	cout << "Memory use and process statistics: " << endl;
-        cout << "memuse      : Show the system memory usage." << endl;
-        cout << "serverstat  : Display the server utilization. \n" << endl;
-	cout << "Networking, encryption, and firewall: " << endl;
-        cout << "setiptable  : Interactively generate iptables firewalls." << endl;
-        cout << "encrypt     : Encrypts a file using gpg." << endl;
+        cout << "\thelp        : Displays this help prompt." << endl;
+        cout << "\teditconf    : Edits a configuration file based on flags." << endl;
+        cout << "\tusers       : Displays the system users." << endl;
+        cout << "\taddusers    : Adds the listed users in an interactive prompt." << endl;
+        cout << "\tgroups      : Displays the system groups." << endl;
+        cout << "\tremoveusers : Completely removes a specified user." << endl; 
+        cout << "\tmemuse      : Show the system memory usage." << endl;
+        cout << "\tserverstat  : Display the server utilization." << endl;
+        cout << "\tsetiptable  : Interactively generate iptables firewalls." << endl;
+        cout << "\tencrypt     : Encrypts a file using gpg." << endl;
 }
 void err_call( string x ){
 	cout << red << x << normal << endl;
@@ -342,4 +333,4 @@ void editConfigFile( int argc, char* argv[] ){
 		}
 	}
 }
-// She loves everybody. She gets off all the time.
+// You must be kidding; to think you can really get away with what you've done.
