@@ -333,4 +333,10 @@ void editConfigFile( int argc, char* argv[] ){
 		}
 	}
 }
+void diskUsage( int argc, char* argv[] ){
+	// begin this stuff soon.
+}
+void databaseBackup( int argc, char* argv[] ){
+	// begin this stuff soon.
+}
 // You must be kidding; to think you can really get away with what you've done.

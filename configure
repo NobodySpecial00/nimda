@@ -7,14 +7,14 @@ compile_cpp(){
 		fi
 	fi
 }
-create_sym_link(){
+create_bin_file(){
 	if [ -e /usr/bin/nimda ]; then
 		echo "/usr/bin/nimda already created."
 	else
-		if (ln -s /home/kylo/Documents/git-clones/nimda/nimda /usr/bin/nimda); then
-			echo "nimda symbolic link generated."
+		if (mv nimda /usr/bin/nimda); then
+			echo "nimda /usr/bin file generated."
 		fi
 	fi
 }
 compile_cpp
-create_sym_link
+create_bin_file
