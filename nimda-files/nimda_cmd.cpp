@@ -38,9 +38,12 @@ void err_call( string x ){
 void showUsers( int argc, char* argv[] ){
 	ifstream passwd("/etc/passwd");
 	if ( passwd ){
-
 		if ( argc > 2 ){
-			cout << "Searching for " << argv[2] << " in passwd: " << endl;
+			if ( string( argv[2] ) == "all" ){
+				rv.runVar = "cat /etc/passwd";
+				system( (rv.runVar).c_str() );
+			}
+			cout << "Showing all " << argv[2] << " in passwd: " << endl;
 			rv.runVar = "cat /etc/passwd | grep " + string( argv[2] );
 			system( (rv.runVar).c_str() );
 		}
@@ -283,8 +286,8 @@ void showMemory(){
 	cout << "Used swap: " << endl;
 	system("vmstat -s -SM | grep used | grep swap | sed -e 's/^[ \t]*//'");
 	cout << "---" << endl;
-	cout << "Free disk space: " << endl;
-	system("df -h | grep -v Filesystem");
+	cout << "Used disk space per filesystem: " << endl;
+	system("df -H | grep -vE '^Filesystem|tmpfs|cdrom' | awk '{ print $5 \"\t\" $1 }'");
 	cout << "---" << endl;
 	cout << "CPU usage: " << endl;
 	system("lscpu | grep CPU");
