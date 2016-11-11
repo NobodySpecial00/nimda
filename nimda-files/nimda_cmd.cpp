@@ -6,9 +6,12 @@
 #include <unistd.h>
 #include <vector>
 #include <sstream>
+#include <ctime>
+#include <sys/stat.h>
 using namespace std;
 char red	[] = { 0x1b, '[', '0', ';', '3', '1', 'm', 0 };
 char normal	[] = { 0x1b, '[', '0', ';', '3', '3', 'm', 0 };
+const string driveType[] = {"sdb", "sdb1"};
 class runVars{
 	public:
 		string runVar;
@@ -31,6 +34,7 @@ void help(){
         cout << "\tserverstat  : Display the server utilization." << endl;
         cout << "\tsetiptable  : Interactively generate iptables firewalls." << endl;
         cout << "\tencrypt     : Encrypts a file using gpg." << endl;
+	cout << "\tbackup      : Backs up the specified directory." << endl;
 }
 void err_call( string x ){
 	cout << red << x << normal << endl;
@@ -141,10 +145,10 @@ void serverUtilization( int argc, char* argv[]){
 	system("sudo top -b | head -10 | tail -4");
 	cout << "---" << endl;
 	cout << "Open ports: " << endl;
-	system("sudo nmap -sT localhost | grep -E \"(tcp|udp)\"");
+	system("netstat -antl");
 	cout << "---" << endl;
 	cout << "Current connections: " << endl;
-	system("sudo ss -s");
+	system("sudo ss -ilnsp");
 	cout << "---" << endl;
 }
 void editFirewall(int argc, char* argv[]){
@@ -336,10 +340,14 @@ void editConfigFile( int argc, char* argv[] ){
 		}
 	}
 }
-void diskUsage( int argc, char* argv[] ){
-	// begin this stuff soon.
-}
-void databaseBackup( int argc, char* argv[] ){
-	// begin this stuff soon.
+void dirBackup( int argc, char* argv[] ){
+	time_t curtime = time(0);
+	char* time = ctime(&curtime);
+	const int dir_err = mkdir(time, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+	int x = 0;
+	while ( x <= 1 ){
+		cout << driveType[x] << endl;
+		x++;
+	}
 }
 // You must be kidding; to think you can really get away with what you've done.

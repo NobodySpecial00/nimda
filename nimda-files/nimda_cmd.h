@@ -14,4 +14,5 @@ void serverUtilization( int argc, char* argv[]);
 void editFirewall(int argc, char* argv[]);
 void showMemory();
 void editConfigFile( int argc, char* argv[] );
+void dirBackup( int argc, char* argv[] );
 #endif

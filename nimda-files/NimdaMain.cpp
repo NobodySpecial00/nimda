@@ -38,6 +38,8 @@ int main(int argc, char* argv[]){
 			addUsers( argc, argv );
 		else if ( argtest == "editconf"           )
 			editConfigFile( argc, argv );
+		else if ( argtest == "backup" )
+			dirBackup( argc, argv );
 		else
 			err_call("\nArgument not found.\n");
 	}
