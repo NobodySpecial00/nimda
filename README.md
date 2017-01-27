@@ -1,10 +1,7 @@
 ### Nimda
 A Linux command line utility used to speed up and simplify the process of a Linux system administrator.
 
----
-
-*Nowhere near complete.
-The symbolic link creation in the install is not working. that was mostly for convenience, it will be fixed soon.*
+*Nowhere near complete.*
 
 To install, just run: 
 ```bash
