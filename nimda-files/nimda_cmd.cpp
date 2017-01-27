@@ -186,4 +186,4 @@ void editPort( int argc, char* argv[] ){
 		}
 	}
 }
-// I mean really what were you expecting?
+// Paranoid, so paranoid.
