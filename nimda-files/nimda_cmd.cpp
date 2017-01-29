@@ -191,6 +191,7 @@ void editPort( int argc, char* argv[] ){
 		}
 	}
 }
+// THIS IS COMPETITION SPECIFIC AND WILL BE REMOVED SOON
 void cyCmd( int argc, char* argv[] ){
 	if ( argc < 3 ){
 		cout << "missing parameters." << endl;
@@ -209,6 +210,12 @@ void cyCmd( int argc, char* argv[] ){
 				rv.runCmd("sudo locate *.png");
 				cout << "all jpg" << endl;
 				rv.runCmd("sudo locate *.jpg");
+			case 3:
+				cout << "setting firewall."
+				rv.runCmd("sudo ufw enable");
+			case 4:
+				cout << "closing pre-destined ports."
+				system("bash ~/git-clones/nimda/predestined-port-close.sh");
 		}
 	}
 }
