@@ -118,6 +118,9 @@ void serverUtilization( int argc, char* argv[]){
 	cout << "Network files being operated by a program: " << endl;
 	system("sudo lsof -i -n -P");
 	cout << "---" << endl;
+	cout << "Current running services:" << endl;
+	system("service --status-all | grep +");
+	cout << "---" << endl;
 }
 void showMemory(){
 	cout << "Used memory: " << endl;
@@ -199,6 +202,13 @@ void cyCmd( int argc, char* argv[] ){
 				rv.runCmd("sudo apt-get remove --purge netcat-openbsd john hydra nmap");
 			case 1:
 				rv.runCmd("sudo apt-get update && sudo apt-get upgrade");
+			case 2:
+				cout << "all mp3" << endl;
+				rv.runCmd("sudo locate *.mp3");
+				cout << "all png" << endl;
+				rv.runCmd("sudo locate *.png");
+				cout << "all jpg" << endl;
+				rv.runCmd("sudo locate *.jpg");
 		}
 	}
 }

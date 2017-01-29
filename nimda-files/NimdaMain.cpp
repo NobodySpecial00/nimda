@@ -9,17 +9,21 @@ int main(int argc, char* argv[]){
 		if ( argc < 2 )
 			help();
 		string argtest = argv[1];
-		const string funcMap[] = {"help", "users", "rusers", "groups", "memuse", "svstat", "ausers", "econf", "close", "cpc"};
-		int strMap =    ( argtest == funcMap[0] ) ? 0 : 
-				( argtest == funcMap[1] ) ? 1 : 
-				( argtest == funcMap[2] ) ? 2 : 
-				( argtest == funcMap[3] ) ? 3 :
-				( argtest == funcMap[4] ) ? 4 : 
-				( argtest == funcMap[5] ) ? 5 : 
-				( argtest == funcMap[6] ) ? 6 : 
-				( argtest == funcMap[7] ) ? 7 : 
-				( argtest == funcMap[8] ) ? 8 : 
-				( argtest == funcMap[9] ) ? 9 : 0;
+		const string funcMap[] = {
+			"help", "users", "rusers", "groups", "memuse", "svstat", "ausers", "econf", "close", "cpc"
+		};
+		int strMap = 
+			( argtest == funcMap[0] ) ? 0 : 
+			( argtest == funcMap[1] ) ? 1 : 
+			( argtest == funcMap[2] ) ? 2 : 
+			( argtest == funcMap[3] ) ? 3 :
+			( argtest == funcMap[4] ) ? 4 : 
+			( argtest == funcMap[5] ) ? 5 : 
+			( argtest == funcMap[6] ) ? 6 : 
+			( argtest == funcMap[7] ) ? 7 : 
+			( argtest == funcMap[8] ) ? 8 : 
+			( argtest == funcMap[9] ) ? 9 : 0
+		;
 		switch ( strMap ){
 			case 0:
 				help();
