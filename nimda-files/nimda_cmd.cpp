@@ -3,6 +3,8 @@
 using namespace std;
 class runVars{
 	public:
+		int condition;
+		string convert;
 		void runCmd(string run){
 			system( (run).c_str() );
 		}
@@ -15,11 +17,11 @@ void help(){
         cout << "\thelp        : Displays this help prompt." << endl;
         cout << "\teconf       : Edits a configuration [0-6]." << endl;
         cout << "\tusers       : Displays the system users." << endl;
-        cout << "\taddusers    : Adds the listed users in an interactive prompt." << endl;
+        cout << "\tausers      : Adds the listed users in an interactive prompt." << endl;
         cout << "\tgroups      : Displays the system groups." << endl;
-        cout << "\tremusers    : Completely removes a specified user [x, y, z]." << endl; 
+        cout << "\trusers      : Completely removes a specified user [x, y, z]." << endl; 
         cout << "\tmemuse      : Show the system memory usage." << endl;
-        cout << "\tserverstat  : Display the server utilization." << endl;
+        cout << "\tsvstat      : Display the server utilization." << endl;
 	cout << "\tclose       : Closes a specified port [0-1, port]." << endl;
 }
 void showUsers( int argc, char* argv[] ){
@@ -140,9 +142,9 @@ void editConfigFile( int argc, char* argv[] ){
 	}
 	else{
 		cout << "Editing configuration file. " << endl;
-		string convert = string(argv[2]);
-		int condition = atoi( convert.c_str() );
-		switch ( condition ){
+		rv.convert   = string(argv[2]);
+		rv.condition = atoi( rv.convert.c_str() );
+		switch ( rv.condition ){
 			case 0:
 				rv.runCmd("vim /etc/ssh/sshd_config");
 				break;
@@ -176,13 +178,27 @@ void editPort( int argc, char* argv[] ){
 	if ( argc < 3 ){
 		cout << "missing parameters." << endl;
 	}else{
-		string convert = string( argv[2] );
-		int condition = atoi( convert.c_str() );
-		switch ( condition ){
+		rv.convert   = string( argv[2] );
+		rv.condition = atoi( rv.convert.c_str() );
+		switch ( rv.condition ){
 			case 0:
 				rv.runCmd("iptables -A INPUT -p tcp -s 0/0 -d 0/0 --dport " + string(argv[3]) + " -j DROP");
 			case 1:
 				rv.runCmd("iptables -A INPUT -p udp -s 0/0 -d 0/0 --dport " + string(argv[3]) + " -j DROP");
+		}
+	}
+}
+void cyCmd( int argc, char* argv[] ){
+	if ( argc < 3 ){
+		cout << "missing parameters." << endl;
+	}else {
+		rv.convert   = string( argv[2] );
+		rv.condition = atoi( rv.convert.c_str() );
+		switch ( rv.condition ){
+			case 0:
+				rv.runCmd("sudo apt-get remove --purge netcat-openbsd john hydra nmap");
+			case 1:
+				rv.runCmd("sudo apt-get update && sudo apt-get upgrade");
 		}
 	}
 }

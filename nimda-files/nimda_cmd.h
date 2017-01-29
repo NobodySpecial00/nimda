@@ -9,5 +9,6 @@ void removeUser( int argc, char* argv[] );
 void serverUtilization( int argc, char* argv[]);
 void showMemory();
 void editConfigFile( int argc, char* argv[] );
-void editPort( int argc, char* argvp[] );
+void editPort( int argc, char* argv[] );
+void cyCmd( int argc, char* argv[] );
 #endif
