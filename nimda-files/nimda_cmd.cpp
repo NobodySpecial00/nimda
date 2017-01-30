@@ -211,12 +211,12 @@ void cyCmd( int argc, char* argv[] ){
 				cout << "all jpg" << endl;
 				rv.runCmd("sudo locate *.jpg");
 			case 3:
-				cout << "setting firewall."
+				cout << "setting firewall." << endl;
 				rv.runCmd("sudo ufw enable");
 			case 4:
-				cout << "closing pre-destined ports."
+				cout << "closing pre-destined ports." << endl;
 				system("bash ~/git-clones/nimda/predestined-port-close.sh");
 		}
 	}
 }
-// Paranoid, so paranoid.
+// Not even when she tells him that they're better as friends.

@@ -8,6 +8,7 @@ int main(int argc, char* argv[]){
 	else{
 		if ( argc < 2 )
 			help();
+			return 1;
 		string argtest = argv[1];
 		const string funcMap[] = {
 			"help", "users", "rusers", "groups", "memuse", "svstat", "ausers", "econf", "close", "cpc"
