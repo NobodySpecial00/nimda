@@ -6,9 +6,10 @@ int main(int argc, char* argv[]){
 	if ( getuid() != 0 )
 		cout << "Run as root." << endl;
 	else{
-		if ( argc < 2 )
+		if ( argc < 2 ){
 			help();
 			return 1;
+		}
 		string argtest = argv[1];
 		const string funcMap[] = {
 			"help", "users", "rusers", "groups", "memuse", "svstat", "ausers", "econf", "close", "cpc"
