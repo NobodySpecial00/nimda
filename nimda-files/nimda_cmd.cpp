@@ -191,32 +191,3 @@ void editPort( int argc, char* argv[] ){
 		}
 	}
 }
-// THIS IS COMPETITION SPECIFIC AND WILL BE REMOVED SOON
-void cyCmd( int argc, char* argv[] ){
-	if ( argc < 3 ){
-		cout << "missing parameters." << endl;
-	}else {
-		rv.convert   = string( argv[2] );
-		rv.condition = atoi( rv.convert.c_str() );
-		switch ( rv.condition ){
-			case 0:
-				rv.runCmd("sudo apt-get remove --purge netcat-openbsd john hydra nmap");
-			case 1:
-				rv.runCmd("sudo apt-get update && sudo apt-get upgrade");
-			case 2:
-				cout << "all mp3" << endl;
-				rv.runCmd("sudo locate *.mp3");
-				cout << "all png" << endl;
-				rv.runCmd("sudo locate *.png");
-				cout << "all jpg" << endl;
-				rv.runCmd("sudo locate *.jpg");
-			case 3:
-				cout << "setting firewall." << endl;
-				rv.runCmd("sudo ufw enable");
-			case 4:
-				cout << "closing pre-destined ports." << endl;
-				system("bash ~/git-clones/nimda/predestined-port-close.sh");
-		}
-	}
-}
-// Not even when she tells him that they're better as friends.
